@@ -16,6 +16,13 @@
 # If cluster name is our own hostname, we assume we're not properly clustered
 # TODO(someone): implement a more robust way of checking
 # if node is clustered or not
+- name: Show cluster status
+  shell: |
+    rabbitmqctl cluster_status
+  failed_when: false
+  tags:
+    - rabbitmq-cluster
+
 - name: Check cluster status
   shell: |
     rabbitmqctl -q cluster_status | grep '{cluster_name,<<"{{ rabbitmq_cluster_name }}">>}'

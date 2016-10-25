@@ -13,6 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Show cluster status
+  shell: |
+    rabbitmqctl cluster_status
+  failed_when: false
+  tags:
+    - rabbitmq-cluster
+
 - name: "Ensure RabbitMQ node [0] is started"
   service:
     name: rabbitmq-server
@@ -36,3 +43,10 @@
     - rabbitmq-server-started
     - rabbitmq-upgrade
     - rabbitmq-start
+
+- name: Show cluster status
+  shell: |
+    rabbitmqctl cluster_status
+  failed_when: false
+  tags:
+    - rabbitmq-cluster

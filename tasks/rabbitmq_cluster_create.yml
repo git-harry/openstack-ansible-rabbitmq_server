@@ -13,6 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Get rabbitmq cluster status
+  shell: |
+    rabbitmqctl cluster_status
+  failed_when: false
+  tags:
+    - rabbitmq-cluster
+
 - name: Get rabbitmq cluster name
   shell: |
     rabbitmqctl cluster_status | grep -w '<<"{{ rabbitmq_cluster_name }}">>'
